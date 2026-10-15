@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             //telefone é obrigatorio, tem que ser um texto e só pode números de 10 a 11
-            'phone' => ['required', 'string', 'regex:/^[0-9]{10,11}+$/'],
+            'phone' => ['required', 'string', 'regex:/^\(\d{2}\)\s?\d{4,5}-?\d{4}$|^\d{10,11}$/'],
         ]);
 
         $user = User::create([
