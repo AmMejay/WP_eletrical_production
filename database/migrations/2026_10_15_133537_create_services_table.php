@@ -14,8 +14,17 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            // slug => Indentificador amigável para URLs, ex: intalacao-de-tomadas
+            $table->string('slug')->unique();
             $table->text('descricao')->nullable();
-            $table->decimal('preco')->default(0);
+            // Enum dado para váriavel já que preço pode ser fixo ou específicado
+            $table->enum('pricing_type', ['fixed', 'quote'])
+                ->default('quote');
+
+            $table->decimal('pricing', 10, 2)->nullable();
+            $table->unsignedSmallInteger('duration_minutes')->nullable();
+
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
