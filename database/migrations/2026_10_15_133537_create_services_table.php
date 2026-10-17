@@ -16,15 +16,10 @@ return new class extends Migration
             $table->string('name');
             // slug => Indentificador amigável para URLs, ex: intalacao-de-tomadas
             $table->string('slug')->unique();
-            $table->text('descricao')->nullable();
-            // Enum dado para váriavel já que preço pode ser fixo ou específicado
-            $table->enum('pricing_type', ['fixed', 'quote'])
-                ->default('quote');
-
-            $table->decimal('pricing', 10, 2)->nullable();
-            $table->unsignedSmallInteger('duration_minutes')->nullable();
+            $table->text('description')->nullable();
 
             $table->boolean('active')->default(true);
+            $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             $table->timestamps();
         });
     }

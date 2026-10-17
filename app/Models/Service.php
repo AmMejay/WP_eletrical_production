@@ -9,17 +9,13 @@ class Service extends Model
     protected $fillable = [
         "name",
         "slug",
-        "descricao",
-        "pricing_type",
-        "pricing",
-        "duration_minutes",
+        "description",
         "active",
     ];
 
     protected function casts(): array
     {
         return [
-            "price" => "decimal:2",
             "active" => "boolean",
         ];
     }
