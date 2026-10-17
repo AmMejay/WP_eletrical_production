@@ -18,4 +18,4 @@ class ServiceSeeder extends Seeder
             "active",
         ];
     }
-}
+} 

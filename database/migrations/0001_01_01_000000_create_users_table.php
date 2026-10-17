@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             // cria a coluna telefone
             $table->string('phone');
+            $table->enum('role', ['user', 'electrician'])->default('user');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

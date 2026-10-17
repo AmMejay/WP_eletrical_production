@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Illuminate\Validation\Rule;
 
 class RegisteredUserController extends Controller
 {
@@ -36,6 +37,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             //telefone é obrigatorio, tem que ser um texto e só pode números de 10 a 11
             'phone' => ['required', 'string', 'regex:/^\(\d{2}\)\s?\d{4,5}-?\d{4}$|^\d{10,11}$/'],
+            'role' => ['required', Rule::in(['user', 'electrician'])],
         ]);
 
         $user = User::create([
@@ -44,12 +46,17 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             //salva o telefone no banco de dados que pegamos com o formulário
             'phone' => $request->phone,
+            'role' => $request->role,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        if($user->role === 'electrician') {
+            return redirect()->route('dashboard.eletricista');
+        }
+
+        return redirect()->route('dashboard');
     }
 }

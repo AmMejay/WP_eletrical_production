@@ -149,6 +149,26 @@
                                 @enderror
                             </div>
 
+                        <div>
+                        <label for="role" class="mb-2 block text-sm font-semibold text-slate-200">
+                            Tipo de conta
+                        </label>
+
+                        <select
+                            id="role"
+                            name="role"
+                            required
+                            class="w-full border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white outline-none transition focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400">
+                            <option value="user">Cliente</option>
+                            <option value="electrician">Eletricista</option>
+                        </select>
+
+                        @error('role')
+                            <p class="mt-2 text-sm text-red-400">{{ $message }}</p>
+                        @enderror
+                        </div>
+
+
                         </div>
 
                         <button type="submit"

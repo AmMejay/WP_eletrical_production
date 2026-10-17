@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 // diz que a coluna telefone pode ser salva no banco
-#[Fillable(['name', 'email', 'password', 'phone'])]
+#[Fillable(['name', 'email', 'password', 'phone', 'role'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
