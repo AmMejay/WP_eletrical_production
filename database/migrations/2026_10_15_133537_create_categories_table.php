@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // slug => Indentificador amigável para URLs, ex: intalacao-de-t
+            // slug => Indentificador amigável para URLs, ex: intalacao-de-tomada
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->boolean('active')->default(true);

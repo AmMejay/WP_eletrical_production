@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('servicesOptions', function (Blueprint $table) {
+        Schema::create('servicesOptions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             // slug => Indentificador amigável para URLs, ex: intalacao-de-tomadas
