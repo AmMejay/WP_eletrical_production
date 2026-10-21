@@ -135,9 +135,12 @@
 
                 <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
+                    @foreach ($categories as $category)
+                    <a href="">{{ $category->name }}</a>
+                    @endforeach
                     <article class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
                         <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-yellow-100 text-3xl">
-                            ⚡
+
                         </div>
 
                         <h3 class="mt-6 text-xl font-bold">

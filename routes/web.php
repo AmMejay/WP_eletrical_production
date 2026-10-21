@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Categories;
 
 Route::get('/', function () {
-    return view('welcome');
+    $categories = Categories::all();
+    return view('welcome', compact('categories'));
 });
 
 Route::get('/dashboard', function () {
@@ -21,6 +23,8 @@ Route::middleware('auth')->group(function () {
     })
     ->middleware('Electrician_login')
     ->name('dashboard.eletricista');
+    //Rota das categorias
+    Route::get('/category/{slug}', );
 });
 
 require __DIR__ . '/auth.php';
