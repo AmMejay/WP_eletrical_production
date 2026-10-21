@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Categories;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     $categories = Categories::all();
@@ -24,7 +25,7 @@ Route::middleware('auth')->group(function () {
     ->middleware('Electrician_login')
     ->name('dashboard.eletricista');
     //Rota das categorias
-    Route::get('/category/{slug}', );
+    Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('service.show');
 });
 
 require __DIR__ . '/auth.php';

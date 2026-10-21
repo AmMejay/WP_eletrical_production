@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ServiceOptions extends Model
 {
+
+    protected $table = 'servicesOptions';
+
     protected $fillable = [
         'name',
         'slug',

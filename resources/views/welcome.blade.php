@@ -70,7 +70,6 @@
                  class="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
 
             <div class="mx-auto grid max-w-7xl items-center gap-12 px-6 py-24 md:grid-cols-2 md:py-32">
-
                 <div>
                     <span class="inline-block rounded-full border border-yellow-400/30 bg-yellow-400/10 px-4 py-2 text-sm font-semibold text-yellow-400">
                         Soluções em engenharia elétrica
@@ -133,74 +132,56 @@
                     </p>
                 </div>
 
-                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    </section>
 
-                    @foreach ($categories as $category)
-                    <a href="">{{ $category->name }}</a>
-                    @endforeach
-                    <article class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
-                        <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-yellow-100 text-3xl">
 
+            <section class="space-y-12 py-16">
+                @foreach ($categories as $category)
+                    <div class="grid items-center gap-10 bg-slate-100 p-8 md:grid-cols-2 md:p-14">
+
+                        {{-- Texto da categoria --}}
+                        <div class="space-y-6">
+                            <span class="text-sm font-bold uppercase tracking-widest text-yellow-700">
+                                VOLT ENGENHARIA
+                            </span>
+
+                            <h2 class="text-3xl font-bold text-slate-950 md:text-5xl">
+                                {{ $category->name }}
+                            </h2>
+
+                            <p class="text-lg leading-relaxed text-slate-600">
+                                {{ $category->description }}
+                            </p>
+
+                            <a
+                                href="{{ route('service.show', $category->slug) }}"
+                                class="inline-block bg-slate-950 px-7 py-4 font-bold text-white transition hover:bg-yellow-400 hover:text-slate-950"
+                            >
+                                Contrate aqui →
+                            </a>
                         </div>
 
-                        <h3 class="mt-6 text-xl font-bold">
-                            Instalações elétricas
-                        </h3>
-
-                        <p class="mt-3 leading-relaxed text-slate-600">
-                            Soluções para instalações elétricas residenciais,
-                            comerciais e outros ambientes atendidos pela empresa.
-                        </p>
-
-                        <a href="#contato"
-                           class="mt-6 inline-block font-bold text-yellow-700 transition hover:text-yellow-900">
-                            Solicitar informações →
-                        </a>
-                    </article>
-
-                    <article class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
-                        <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-yellow-100 text-3xl">
-                            📐
+                        {{-- Imagem da categoria --}}
+                        <div>
+                            @if ($category->slug === 'eletrica')
+                                <img
+                                    src="{{ asset('images/eletrica.jpg') }}"
+                                    alt="Serviços elétricos"
+                                    class="h-72 w-full object-cover md:h-96"
+                                >
+                            @elseif ($category->slug === 'hidraulica')
+                                <img
+                                    src="{{ asset('images/hidraulica.jpg') }}"
+                                    alt="Serviços hidráulicos"
+                                    class="h-72 w-full object-cover md:h-96"
+                                >
+                            @endif
                         </div>
 
-                        <h3 class="mt-6 text-xl font-bold">
-                            Projetos elétricos
-                        </h3>
+                    </div>
+                @endforeach
+            </section>
 
-                        <p class="mt-3 leading-relaxed text-slate-600">
-                            Elaboração de projetos elétricos conforme as
-                            necessidades e características de cada obra.
-                        </p>
-
-                        <a href="#contato"
-                           class="mt-6 inline-block font-bold text-yellow-700 transition hover:text-yellow-900">
-                            Solicitar informações →
-                        </a>
-                    </article>
-
-                    <article class="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
-                        <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-yellow-100 text-3xl">
-                            🛠️
-                        </div>
-
-                        <h3 class="mt-6 text-xl font-bold">
-                            Outros serviços
-                        </h3>
-
-                        <p class="mt-3 leading-relaxed text-slate-600">
-                            Entre em contato para conhecer os demais serviços
-                            disponíveis e encontrar a solução adequada.
-                        </p>
-
-                        <a href="#contato"
-                           class="mt-6 inline-block font-bold text-yellow-700 transition hover:text-yellow-900">
-                            Fale conosco →
-                        </a>
-                    </article>
-
-                </div>
-            </div>
-        </section>
 
         <!-- SOBRE -->
         <section id="sobre" class="bg-slate-900 px-6 py-24">
