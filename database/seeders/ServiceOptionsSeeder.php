@@ -38,4 +38,4 @@ class ServiceOptionsSeeder extends Seeder
             );
         }
     }
-} 
+}
