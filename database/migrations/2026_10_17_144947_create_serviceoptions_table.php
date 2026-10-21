@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             // slug => Indentificador amigável para URLs, ex: intalacao-de-tomadas
             $table->string('slug')->unique();
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
             // Enum dado para váriavel já que preço pode ser fixo ou específicado
             $table->enum('pricing_type', ['fixed', 'quote'])
                 ->default('quote');

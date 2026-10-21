@@ -15,6 +15,7 @@ class ServiceOptions extends Model
         'price',
         'duration_minutes',
         'active',
+        'service_id',
     ];
 
     protected function casts(): array

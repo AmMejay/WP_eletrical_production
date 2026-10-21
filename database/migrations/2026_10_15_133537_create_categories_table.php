@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             // slug => Indentificador amigável para URLs, ex: intalacao-de-tomada
             $table->string('slug')->unique();
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

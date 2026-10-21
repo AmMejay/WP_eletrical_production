@@ -11,7 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('andresses', function (Blueprint $table) {
+            $table->id();
+            $table->string('cep');
+            $table->string('street');
+            $table->string('city');
+            $table->string('reference')->nullable();
+            $table->string('number')->nullable();
+
+            $table->foreignId('user_id')->constrained("users")->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -19,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('andresses');
     }
 };
