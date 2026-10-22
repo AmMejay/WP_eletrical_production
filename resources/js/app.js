@@ -20,3 +20,15 @@ if(telefone) {
         ]
     });
 }
+// Imask do cep
+
+const cep = document.getElementById('cep');
+
+if(cep) {
+
+    IMask(cep, {
+
+        mask: '00000-000'
+
+    })
+}

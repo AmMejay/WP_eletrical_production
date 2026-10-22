@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Categories;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\AndressesController;
 
 Route::get('/', function () {
     $categories = Categories::all();
@@ -26,6 +28,10 @@ Route::middleware('auth')->group(function () {
     ->name('dashboard.eletricista');
     //Rota das categorias
     Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('service.show');
+    //rota do service
+    Route::get('/service/{slug}', [ServiceController::class, 'show'])->name('service_detail.show');
+    //rota do cadastro de endereço
+    Route::post('register/address', [AndressesController::class, 'store'])->name('address.store');
 });
 
 require __DIR__ . '/auth.php';

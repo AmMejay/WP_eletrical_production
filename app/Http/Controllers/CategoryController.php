@@ -12,11 +12,8 @@ class CategoryController extends Controller
 
     $category = Categories::where('slug', $slug)->firstOrFail();
 
-
-
     $services = Service::where('category_id', $category->id)->get();
 
-     dd($services);
 
     return view('servicos', compact('services', 'category'));
 
