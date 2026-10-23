@@ -57,6 +57,6 @@ class RegisteredUserController extends Controller
             return redirect()->route('dashboard.eletricista');
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->intended(route('dashboard', absolute: false));
     }
 }
