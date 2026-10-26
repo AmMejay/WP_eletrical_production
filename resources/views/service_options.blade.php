@@ -65,7 +65,7 @@
                     </div>
 
                     @if ($service_option->active)
-                        <a href="{{ route() }}"
+                        <a href="{{ route('address.join', $services->id) }}"
                            class="mt-6 block rounded-lg bg-yellow-400 px-4 py-3 text-center font-bold text-slate-950 transition hover:bg-yellow-300">
                             Escolher opção
                         </a>

@@ -12,8 +12,6 @@ class Appointment extends Model
         'status',
         'user_id',
         'address_id',
-        'user_id',
-        'address_id',
         'service_option_id',
     ];
 

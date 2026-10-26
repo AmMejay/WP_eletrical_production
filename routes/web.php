@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Categories;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceOptionsController;
 use App\Http\Controllers\AndressesController;
+use App\Http\Controllers\AppointmentsController;
 
 Route::get('/', function () {
     $categories = Categories::all();
@@ -30,8 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('service.show');
     //rota do service
     Route::get('/service/{slug}', [ServiceController::class, 'show'])->name('service_detail.show');
+    //rota para ir para o local de cadastro de endereço
+    Route::get('register/address/{id}', [ServiceOptionsController::class, 'redirect'])->name('address.join');
     //rota do cadastro de endereço
     Route::post('register/address', [AndressesController::class, 'store'])->name('address.store');
+    //rota para entrar nos agendamentos
+    Route::get('agendamento/finalizar', [AppointmentsController::class, 'store'])->name('agendamento');
 });
 
 require __DIR__ . '/auth.php';

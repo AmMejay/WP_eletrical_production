@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Andresses;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class AndressesController extends Controller
@@ -26,7 +27,6 @@ class AndressesController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
-        return redirect()->route('');
-
+        return redirect()->route('agendamento');
     }
 }

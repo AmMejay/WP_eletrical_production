@@ -24,11 +24,9 @@
                 Serviço selecionado
             </p>
 
-            @foreach ($services as $service)
                 <h2 class="mt-1 text-lg font-bold text-slate-900">
-                    {{ $service->name }}
+                    {{ $services->name }}
                 </h2>
-            @endforeach
         </div>
 
             <p class="mt-2 text-slate-600">

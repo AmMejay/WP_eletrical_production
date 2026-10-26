@@ -16,7 +16,6 @@ return new class extends Migration
             $table->dateTime('appointment_at')->useCurrent();
             $table->string('description_appointment')->nullable();
             $table->enum('status', ['pending', 'confirmed', 'in_progress', 'completed', 'canceled'])->default('pending');
-
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('address_id')->constrained('andresses')->onDelete('cascade');
             $table->foreignId('service_option_id')->constrained('servicesOptions')->onDelete('cascade');
