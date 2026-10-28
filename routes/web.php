@@ -35,9 +35,11 @@ Route::middleware('auth')->group(function () {
     //rota para ir para o local de cadastro de endereço
     Route::get('register/address/{id}', [ServiceOptionsController::class, 'redirect'])->name('address.join');
     //rota do cadastro de endereço
-    Route::post('register/address', [AndressesController::class, 'store'])->name('address.store');
+    Route::post('register/address/{id}', [AndressesController::class, 'store'])->name('address.store');
     //rota para entrar nos agendamentos
-    Route::get('agendamento/finalizar', [AppointmentsController::class, 'store'])->name('agendamento');
+    Route::get('agendamento/{id}', [AppointmentsController::class, 'create'])->name('agendamento');
+    //rota para salvar o agendamento
+    Route::post('agendamento/salvar/{id}', [AppointmentsController::class, 'store'])->name('agendamento.save');
 });
 
 require __DIR__ . '/auth.php';

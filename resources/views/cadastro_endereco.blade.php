@@ -34,7 +34,7 @@
             </p>
         </div>
 
-        <form action="{{ route('address.store') }}" method="POST"
+        <form action="{{ route('address.store', $services->id) }}" method="POST"
               class="space-y-6 rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
 
             @csrf

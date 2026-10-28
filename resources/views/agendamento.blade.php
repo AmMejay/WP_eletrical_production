@@ -30,7 +30,7 @@
             {{-- Formulário --}}
             <div class="rounded-2xl bg-white p-6 shadow-lg sm:p-8">
 
-                <form action="{{ route('agendamento') }}"
+                <form action="{{ route('agendamento.save', $service_option->id) }}"
                       method="POST"
                       class="space-y-6">
 
@@ -88,19 +88,19 @@
                     <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
                         <p class="text-sm text-slate-500">Opção selecionada</p>
 
-                        <p class="mt-1 font-semibold text-slate-900">
-                            {{-- {{ $service_option->name }} --}}
+                         <p class="mt-1 font-semibold text-slate-900">
+                            {{ $service_option->name }}
                         </p>
 
-                        {{-- @if ($service_option->pricing_type === 'fixed')
+                         @if ($service_option->pricing_type === 'fixed')
                             <p class="mt-1 font-bold text-yellow-600">
-                                {{-- R$ {{ number_format($service_option->price, 2, ',', '.') }} --}}
+                                R$ {{ number_format($service_option->price, 2, ',', '.') }}
                             </p>
                         @else
                             <p class="mt-1 font-semibold text-slate-600">
                                 Preço sob orçamento
                             </p>
-                        {{-- @endif --}}
+                        @endif
                     </div>
 
                     {{-- Botões --}}

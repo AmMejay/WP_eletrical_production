@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Andresses;
 use App\Models\Appointment;
+use App\Models\ServiceOptions;
 use Illuminate\Http\Request;
 
 class AndressesController extends Controller
 {
-    public function store(Request $request) {
+    public function store(Request $request, $id) {
         $request->validate([
             'cep' => ['nullable', 'string', 'regex:/^[0-9]{5}-[0-9]{3}$/'],
             'street' => ['string', 'max:100', 'required'],
@@ -17,6 +18,8 @@ class AndressesController extends Controller
             'number' => ['string', 'nullable', 'max:50'],
             'user_id' => ['integer'],
         ]);
+
+        $service_option = ServiceOptions::findOrFail($id);
 
         Andresses::create([
             'cep' => $request->cep,
@@ -27,6 +30,6 @@ class AndressesController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
-        return redirect()->route('agendamento');
+        return redirect()->route('agendamento', compact('service_option'));
     }
 }
