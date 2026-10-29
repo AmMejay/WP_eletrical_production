@@ -28,7 +28,7 @@ class AppointmentsController extends Controller
             'service_option_id' => $service_option->id
         ]);
 
-        return view('dashboard');
+        return redirect()->route('dashboard');
     }
 
     public function create($id) {

@@ -8,15 +8,16 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ServiceOptionsController;
 use App\Http\Controllers\AndressesController;
 use App\Http\Controllers\AppointmentsController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     $categories = Categories::all();
     return view('welcome', compact('categories'));
-});
+})->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'User_login'])->name('dashboard');
+//rota onde vai aparecer o agendamento dos clientes e o status
+Route::get('/dashboard', [DashboardController::class, 'show'])
+->middleware(['auth', 'verified', 'User_login'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -30,6 +30,6 @@ class AndressesController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
-        return redirect()->route('agendamento', compact('service_option'));
+        return view('agendamento', compact('service_option'));
     }
 }
