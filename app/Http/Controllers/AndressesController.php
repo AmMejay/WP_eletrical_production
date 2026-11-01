@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class AndressesController extends Controller
 {
-    public function store(Request $request, $id) {
+    public function store(Request $request, Int $id) {
         $request->validate([
             'cep' => ['nullable', 'string', 'regex:/^[0-9]{5}-[0-9]{3}$/'],
             'street' => ['string', 'max:100', 'required'],

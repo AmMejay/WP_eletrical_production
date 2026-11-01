@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function show($slug) {
+    public function show(string $slug)
+    {
 
-    $category = Categories::where('slug', $slug)->firstOrFail();
+        $category = Categories::where('slug', $slug)->firstOrFail();
 
-    $services = Service::where('category_id', $category->id)->get();
+        $services = Service::where('category_id', $category->id)->get();
 
 
-    return view('servicos', compact('services', 'category'));
-
+        return view('servicos', compact('services', 'category'));
     }
 }

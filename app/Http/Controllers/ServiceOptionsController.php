@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ServiceOptionsController extends Controller
 {
-    public function redirect($id) {
+    public function redirect(Int $id) {
 
         $services = Service::findOrFail($id);
 

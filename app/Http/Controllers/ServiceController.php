@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    public function show($slug) {
+    public function show(String $slug) {
 
     $services = Service::where('slug', $slug)->firstOrFail();
 

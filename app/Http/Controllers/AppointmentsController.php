@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 
 class AppointmentsController extends Controller
 {
-    public function store(Request $request, $id) {
-
+    public function store(Request $request, Int $id)
+    {
         $request->validate([
             'appointment_at' => 'required|date',
             'description_appointment' => 'nullable|string|max:100',
@@ -31,11 +31,11 @@ class AppointmentsController extends Controller
         return redirect()->route('dashboard');
     }
 
-    public function create($id) {
+    public function create(Int $id)
+    {
 
         $service_option = ServiceOptions::findOrFail($id);
 
-         return view('agendamento', compact('service_option'));
+        return view('agendamento', compact('service_option'));
     }
-
 }
