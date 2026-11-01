@@ -20,6 +20,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'role',
+        'verification_code', // Adicione esta linha para permitir a atribuição em massa do código de verificação
     ];
 
     protected $hidden = [

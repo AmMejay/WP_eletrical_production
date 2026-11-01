@@ -10,36 +10,43 @@ use App\Http\Controllers\AndressesController;
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\DashboardController;
 
+// Página Inicial (Pública)
 Route::get('/', function () {
     $categories = Categories::all();
     return view('welcome', compact('categories'));
 })->name('welcome');
 
-//rota onde vai aparecer o agendamento dos clientes e o status
-Route::get('/dashboard', [DashboardController::class, 'show'])
-->middleware(['auth', 'verified', 'User_login'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    //dashboard dos eletricistas
+// Bloco de Rotas Protegidas: OBRIGATÓRIO estar Logado E com E-mail Verificado
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    // Dashboard do Cliente (Chama o método 'show' que você já possui)
+    Route::get('/dashboard', [DashboardController::class, 'show'])
+        ->middleware('User_login')
+        ->name('dashboard');
+
+    // Dashboard do Eletricista
     Route::get('/dashboard/eletricista', function () {
         return view('eletricista');
     })
-    ->middleware('Electrician_login')
-    ->name('dashboard.eletricista');
-    //Rota das categorias
+        ->middleware('Electrician_login')
+        ->name('dashboard.eletricista');
+
+    // Perfil do Usuário
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Categorias e Serviços
     Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('service.show');
-    //rota do service
     Route::get('/service/{slug}', [ServiceController::class, 'show'])->name('service_detail.show');
-    //rota para ir para o local de cadastro de endereço
+
+    // Endereços
     Route::get('register/address/{id}', [ServiceOptionsController::class, 'redirect'])->name('address.join');
-    //rota do cadastro de endereço
     Route::post('register/address/{id}', [AndressesController::class, 'store'])->name('address.store');
-    //rota para entrar nos agendamentos
+
+    // Agendamentos
     Route::get('agendamento/{id}', [AppointmentsController::class, 'create'])->name('agendamento');
-    //rota para salvar o agendamento
     Route::post('agendamento/salvar/{id}', [AppointmentsController::class, 'store'])->name('agendamento.save');
 });
 

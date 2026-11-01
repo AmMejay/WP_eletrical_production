@@ -56,4 +56,12 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+
+    // Route to show the verification code form
+    Route::get('verify-email', [\App\Http\Controllers\Auth\EmailVerificationCodeController::class, 'show'])
+        ->name('verification.notice');
+
+    // Route to handle the verification code submission
+    Route::post('verify-email-code', [\App\Http\Controllers\Auth\EmailVerificationCodeController::class, 'check'])
+        ->name('verification.check');
 });

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rule;
 
 class StoreUserRequest extends FormRequest
 {
@@ -37,6 +38,8 @@ class StoreUserRequest extends FormRequest
                     ->symbols()
                     ->uncompromised(),
             ],
+            'phone'    => ['required', 'string', 'regex:/^\(\d{2}\)\s?\d{4,5}-?\d{4}$|^\d{10,11}$/'],
+            'role'     => ['required', Rule::in(['user', 'electrician'])],
         ];
     }
 }

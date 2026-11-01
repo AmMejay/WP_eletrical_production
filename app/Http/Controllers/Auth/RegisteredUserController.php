@@ -31,32 +31,30 @@ class RegisteredUserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            //telefone é obrigatorio, tem que ser um texto e só pode números de 10 a 11
-            'phone' => ['required', 'string', 'regex:/^\(\d{2}\)\s?\d{4,5}-?\d{4}$|^\d{10,11}$/'],
-            'role' => ['required', Rule::in(['user', 'electrician'])],
-        ]);
+        $validated = $request->validated();
+
+        $code = random_int(100000, 999999);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name'              => $validated['name'],
+            'email'             => $validated['email'],
+            'password'          => Hash::make($validated['password']),
             //salva o telefone no banco de dados que pegamos com o formulário
-            'phone' => $request->phone,
-            'role' => $request->role,
+            'phone'             => $validated['phone'],
+            'role'              => $validated['role'],
+            'verification_code' => $code,
         ]);
+
+        $user->notify(new \App\Notifications\SendVerificationCode($code));
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        if($user->role === 'electrician') {
-            return redirect()->route('dashboard.eletricista');
+        if ($user->role === 'electrician') {
+            return redirect()->route('verification.notice');
         }
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->route('verification.notice');
     }
 }
